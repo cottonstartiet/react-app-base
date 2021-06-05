@@ -1,0 +1,32 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "concurrently \"npm:tsc\" \"npm:watch\"",
+    "tsc": "tsc -w",
+    "watch": "nodemon dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Aseem Gaurav"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/config": "^0.0.38",
+    "@types/cors": "^2.8.10",
+    "@types/express": "^4.17.12",
+    "concurrently": "^6.2.0",
+    "nodemon": "^2.0.7",
+    "typescript": "^4.3.2"
+  },
+  "dependencies": {
+    "config": "^3.3.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.9.0",
+    "http-status-codes": "^2.1.4"
+  }
+}

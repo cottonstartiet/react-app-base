@@ -1,18 +1,19 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import logger from "../logger";
+import userProfileService from "../services/userProfileService";
 import { IResponseLocals } from "../types/auth";
 
 const profilesController = {
     async getUserProfile(_: Request, res: Response) {
         const { user } = res.locals as IResponseLocals;
-        // const profile = await userProfileService.getProfileByUserId(user.uid)
-        logger.info({
-            message: 'User found',
-            data: user
-        });
-        if (user) {
-            return res.status(StatusCodes.OK).json(user);
+        const profile = await userProfileService.getProfileByUserId(user.uid);
+        if (profile) {
+            logger.info({
+                message: 'User profile found',
+                data: profile
+            });
+            return res.status(StatusCodes.OK).json(profile);
         }
 
         res.sendStatus(StatusCodes.NOT_FOUND)

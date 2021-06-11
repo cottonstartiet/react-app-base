@@ -1,26 +1,54 @@
 import React from 'react';
-import logo from './logo.svg';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import './App.css';
 
+import useAuth from './hooks/useAuth';
+import { firebaseApp, firebaseUiConfig } from './services';
+
+
 function App() {
+  const { signinStatus, user } = useAuth()
+
+  if (signinStatus === 'signedout') {
+    return (
+      <StyledFirebaseAuth
+        uiConfig={firebaseUiConfig}
+        firebaseAuth={firebaseApp.auth()}
+      />
+    )
+  }
+
+  if (signinStatus === 'inprogress') {
+    return (
+      <div>
+        Signing you in
+      </div>
+    )
+  }
+
+  if (user) {
+    return (
+      <>
+        {[user?.email, user?.name, user?.uid].map((value) => (
+          <div key={value}>
+            {value}
+          </div>
+        ))}
+        <img src={user?.picture ?? undefined} width={100} alt={user?.name ?? 'user'} />
+        <div>
+          <button onClick={() => firebaseApp.auth().signOut()}>
+            Logout
+          </button>
+        </div>
+      </>
+    );
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      User not found
     </div>
-  );
+  )
 }
 
 export default App;

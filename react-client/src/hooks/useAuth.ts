@@ -9,7 +9,7 @@ export interface SigninInfo {
     user?: IFirebaseUser
 }
 
-export default function useAuth() {
+export function useAuth() {
     const [signinInfo, setSigninStatus] = useState<SigninInfo>({
         status: 'inprogress',
         user: undefined

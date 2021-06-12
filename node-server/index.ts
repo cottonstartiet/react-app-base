@@ -8,6 +8,7 @@ import { CorsOptions } from 'cors';
 async function main() {
     const serverConfig = config.get<IServerConfig>('server');
     const mongodbConfig = config.get<IMongodbConfig>('mongodb');
+
     const app = express();
     const corsOptions: CorsOptions = {
         origin: serverConfig.corsOptions.allowedOrigins,

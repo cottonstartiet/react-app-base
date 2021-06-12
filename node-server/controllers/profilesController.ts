@@ -16,7 +16,9 @@ const profilesController = {
             return res.status(StatusCodes.OK).json(profile);
         }
 
-        res.sendStatus(StatusCodes.NOT_FOUND)
+        return res.status(StatusCodes.NOT_FOUND).json({
+            message: 'User profile not found'
+        })
     }
 }
 

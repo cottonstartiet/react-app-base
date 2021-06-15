@@ -19,6 +19,9 @@ export default function Landing() {
                         <Link to='/dashboard'>Dashboard</Link>
                     </li>
                     <li>
+                        <Link to='/firebase'>Firebase User</Link>
+                    </li>
+                    <li>
                         <Link to='/login'>Login</Link>
                     </li>
                 </ul>

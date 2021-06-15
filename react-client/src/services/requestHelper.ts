@@ -1,32 +1,22 @@
 import axios from 'axios';
-import { firebaseApp } from '.';
+import { firebaseApp } from './firebase';
+
+async function getHeader() {
+    const token = await firebaseApp.auth().currentUser?.getIdToken();
+    return {
+        Authorization: `Bearer ${token}`
+    }
+}
 
 const requestHelper = {
-    async getPublic(url: string) {
-        return axios.get(url);
-    },
-    async get(url: string) {
-        const token = await firebaseApp.auth().currentUser?.getIdToken();
-        return axios.get(url, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+    async get<T>(url: string) {
+        return axios.get<T>(url, {
+            headers: await getHeader()
         });
     },
     async post(url: string, payload: any) {
-        const token = await firebaseApp.auth().currentUser?.getIdToken();
         return axios.post(url, payload, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-    },
-    async put(url: string, payload: any) {
-        const token = await firebaseApp.auth().currentUser?.getIdToken();
-        return axios.put(url, payload, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            headers: await getHeader()
         })
     }
 }

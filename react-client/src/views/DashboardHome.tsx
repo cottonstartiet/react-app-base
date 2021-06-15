@@ -1,5 +1,5 @@
 import React from 'react';
-import { firebaseApp } from '../services';
+import { firebaseApp } from '../services/firebase';
 
 export default function DashboardHome() {
     return (

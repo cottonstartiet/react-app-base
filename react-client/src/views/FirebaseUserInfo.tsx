@@ -1,27 +1,9 @@
 import React from 'react';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { useAuth } from '../hooks';
-import { firebaseApp, firebaseUiConfig } from '../services';
+import { firebaseApp } from '../services/firebase';
 
 export default function FirebaseUserInfo() {
-    const { signinStatus, user } = useAuth();
-
-    if (signinStatus === 'signedout') {
-        return (
-            <StyledFirebaseAuth
-                uiConfig={firebaseUiConfig}
-                firebaseAuth={firebaseApp.auth()}
-            />
-        )
-    }
-
-    if (signinStatus === 'inprogress') {
-        return (
-            <div>
-                Signing you in
-            </div>
-        )
-    }
+    const { user } = useAuth();
 
     if (user) {
         return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import { firebaseApp } from '../services';
+import { firebaseApp } from '../services/firebase';
 
 export default function LogoutButton() {
     const history = useHistory();

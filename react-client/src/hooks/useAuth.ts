@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { firebaseApp } from "../services";
+import { firebaseApp } from "../services/firebase";
 import { IFirebaseUser } from "../types";
 
 export type SigninStatus = 'inprogress' | 'signedin' | 'signedout';

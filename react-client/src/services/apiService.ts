@@ -5,11 +5,9 @@ const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 axios.defaults.baseURL = apiBaseUrl;
 
 const apiService = {
-    async fetchUserProfile() {
-        return requestHelper.get(`/profile`);
+    async fetchUserProfile<T>() {
+        return await requestHelper.get<T>(`/profile`);
     }
 }
 
-export {
-    apiService
-}
+export default apiService;

@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from 'http-status-codes';
+import logger from "../logger";
 import firebaseAdmin from "../services/firebaseAdminService";
 
 async function checkIfAuthenticated(req: Request, res: Response, next: NextFunction) {
@@ -20,7 +21,10 @@ async function checkIfAuthenticated(req: Request, res: Response, next: NextFunct
         return next();
 
     } catch (error) {
-        console.log(JSON.stringify(error));
+        logger.error({
+            message: 'Firebase auth check failed',
+            data: error
+        })
         return res
             .status(StatusCodes.INTERNAL_SERVER_ERROR)
             .json({

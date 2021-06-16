@@ -1,14 +1,17 @@
-import { ILogData } from "../types/logging";
+import { ILogData } from "../types";
+import winstonlogger from "./winstonLogger";
+
+
 
 const logger = {
     info(log: ILogData) {
-        console.info({
+        winstonlogger.info({
             level: 'info',
             ...log
-        })
+        });
     },
     error(log: ILogData) {
-        console.error({
+        winstonlogger.error({
             level: 'error',
             ...log
         })

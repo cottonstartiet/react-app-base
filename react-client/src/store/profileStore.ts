@@ -13,7 +13,7 @@ const initialState: UserProfileState = {
 }
 
 const fetchUserProfile = createAsyncThunk(
-    'profile/fetchByProfileId',
+    'profile/fetchUserProfile',
     async (_, thunkApi) => {
         try {
             var response = await apiService.fetchUserProfile<IUserProfile>();

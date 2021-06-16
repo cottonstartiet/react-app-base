@@ -3,7 +3,7 @@ import Loading from "../components/Loading";
 import { fetchUserProfile, useAppDispatch, useAppSelector } from "../store";
 
 export default function UserProfile() {
-    const { profile, apiStatus } = useAppSelector(state => state.userProfile)
+    const { apiStatus } = useAppSelector(state => state.userProfile)
     const appDispatch = useAppDispatch();
     useEffect(() => {
         appDispatch(fetchUserProfile());
@@ -20,10 +20,9 @@ export default function UserProfile() {
                     <hr />
                 </div>
             )}
-            {profile && (
+            {apiStatus.data && (
                 <div>
                     {JSON.stringify(apiStatus.data, null, 2)}
-                    {JSON.stringify(profile)}
                 </div>
             )}
         </div>

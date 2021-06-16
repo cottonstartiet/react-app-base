@@ -6,6 +6,7 @@ import FirebaseUserInfo from './views/FirebaseUserInfo';
 import Landing from './views/Landing';
 import Login from './views/Login';
 import UserProfile from './views/UserProfile';
+import EditProfile from './views/EditProfile';
 
 export default function Routes() {
     return (
@@ -20,8 +21,11 @@ export default function Routes() {
                 <PrivateRoute path='/firebase'>
                     <FirebaseUserInfo />
                 </PrivateRoute>
-                <PrivateRoute path='/me'>
+                <PrivateRoute path='/profile'>
                     <UserProfile />
+                </PrivateRoute>
+                <PrivateRoute path='/edit-profile'>
+                    <EditProfile />
                 </PrivateRoute>
                 <PrivateRoute path='/dashboard'>
                     <Dashbaord />

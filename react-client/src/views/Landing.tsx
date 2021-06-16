@@ -13,7 +13,10 @@ export default function Landing() {
                         <Link to='/'>Landing</Link>
                     </li>
                     <li>
-                        <Link to='/me'>My Profile</Link>
+                        <Link to='/profile'>My Profile</Link>
+                    </li>
+                    <li>
+                        <Link to='/edit-profile'>Edit Profile</Link>
                     </li>
                     <li>
                         <Link to='/dashboard'>Dashboard</Link>

@@ -5,12 +5,10 @@ import apiUtil from "../utils/apiUtil";
 import apiService from "../services/apiService";
 
 interface UserProfileState {
-    profile?: IUserProfile;
     apiStatus: IApiStatus<IUserProfile>;
 }
 
 const initialState: UserProfileState = {
-    profile: undefined,
     apiStatus: defaultApiStatus.initial
 }
 
@@ -21,7 +19,7 @@ const fetchUserProfile = createAsyncThunk(
             var response = await apiService.fetchUserProfile<IUserProfile>();
             return response;
         } catch (error) {
-            return thunkApi.rejectWithValue(error.response);
+            return thunkApi.rejectWithValue(apiUtil.getApiStatus('error', error.response));
         }
     }
 )
@@ -31,17 +29,13 @@ export const profileSlice = createSlice({
     initialState: initialState,
     extraReducers: (builder) => {
         builder.addCase(fetchUserProfile.pending, (state) => {
-            state.profile = undefined;
             state.apiStatus = apiUtil.getApiStatus('inprogress');
         });
         builder.addCase(fetchUserProfile.fulfilled, (state, { payload }) => {
-            state.profile = payload.data;
             state.apiStatus = apiUtil.getApiStatus('success', payload)
         });
         builder.addCase(fetchUserProfile.rejected, (state, { payload }: any) => {
-            state.profile = undefined;
-            console.log(payload);
-            state.apiStatus = apiUtil.getApiStatus('error', payload);
+            state.apiStatus = payload;
         });
     },
     reducers: {},

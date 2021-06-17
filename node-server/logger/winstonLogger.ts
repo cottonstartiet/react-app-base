@@ -6,7 +6,7 @@ const winstonlogger = winston.createLogger({
     defaultMeta: { service: 'nodejs-ts-server' },
     transports: [
         new winston.transports.File({
-            filename: 'logs/log.txt',
+            filename: 'logs/log.log',
             maxFiles: 3,
             maxsize: '5m'
         }),

@@ -3,14 +3,16 @@ import express, { Express } from 'express';
 import profilesController from "./controllers/profilesController";
 import logger from "./logger";
 import { checkIfAuthenticated } from "./middleware/firebaseAuthMiddleware";
-const cors = require('cors');
+import cors from 'cors';
+import helmet from 'helmet';
 
 const server = {
     initialize(app: Express, corsOptions: CorsOptions) {
-        app.use(express.json())
         // Setup Cors
-        app.options('*', cors(corsOptions))
+        // app.options('*', cors)
         app.use(cors(corsOptions));
+        app.use(helmet());
+        app.use(express.json())
 
         // Configure routes
         // With auth

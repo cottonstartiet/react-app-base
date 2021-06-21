@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import logger from "../logger";
 import userProfileService from "../services/userProfileService";
+import { IProfilePatchRequest } from "../types";
 import { IResponseLocals } from "../types/auth";
 
 const profilesController = {
@@ -26,6 +27,15 @@ const profilesController = {
         return res.status(StatusCodes.NOT_FOUND).json({
             message: 'User profile not found'
         });
+    },
+
+    async updateUserProfile(req: Request, res: Response) {
+        const { user } = res.locals as IResponseLocals;
+        logger.info({
+            message: `Updating profile for user id ${user.uid}`
+        });
+        const updatedProfile = await userProfileService.createOrUpdateProfile(user.uid, req.body as IProfilePatchRequest);
+        return res.status(StatusCodes.CREATED).json(updatedProfile);
     }
 }
 

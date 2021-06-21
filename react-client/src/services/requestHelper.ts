@@ -9,13 +9,18 @@ async function getHeader() {
 }
 
 const requestHelper = {
-    async get<T>(url: string) {
-        return axios.get<T>(url, {
+    async get<TResponse>(url: string) {
+        return axios.get<TResponse>(url, {
             headers: await getHeader()
         });
     },
-    async post(url: string, payload: any) {
-        return axios.post(url, payload, {
+    async post<TResponse>(url: string, payload: any) {
+        return axios.post<TResponse>(url, payload, {
+            headers: await getHeader()
+        })
+    },
+    async patch<TResponse>(url: string, payload: any) {
+        return axios.patch<TResponse>(url, payload, {
             headers: await getHeader()
         })
     }

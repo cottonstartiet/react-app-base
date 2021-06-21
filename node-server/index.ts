@@ -14,7 +14,10 @@ async function main() {
         origin: serverConfig.corsOptions.allowedOrigins,
         optionsSuccessStatus: serverConfig.corsOptions.optionsSuccessStatus
     };
-    server.initialize(app, corsOptions);
+    await server.initialize(app, {
+        corsOptions,
+        mongodbConfig
+    });
     server.start(app, serverConfig.port);
 }
 

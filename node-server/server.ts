@@ -5,18 +5,38 @@ import logger from "./logger";
 import { checkIfAuthenticated } from "./middleware/firebaseAuthMiddleware";
 import cors from 'cors';
 import helmet from 'helmet';
+import { IMongodbConfig } from "./types";
+import mongoose from 'mongoose';
+
+interface IServerOptions {
+    corsOptions: CorsOptions;
+    mongodbConfig: IMongodbConfig;
+}
 
 const server = {
-    initialize(app: Express, corsOptions: CorsOptions) {
+    async initialize(app: Express, options: IServerOptions) {
+        const { corsOptions, mongodbConfig } = options;
         // Setup Cors
-        // app.options('*', cors)
         app.use(cors(corsOptions));
         app.use(helmet());
-        app.use(express.json())
+        app.use(express.json());
+
+        // Conect to MongoDB Server
+        try {
+            await mongoose.connect(mongodbConfig.connectionString, {
+                useNewUrlParser: true
+            })
+        } catch (error) {
+            logger.error({
+                message: 'Error while connecting to MongoDB',
+                data: error
+            })
+        }
 
         // Configure routes
         // With auth
         app.get('/api/profile', checkIfAuthenticated, profilesController.getUserProfile);
+        app.patch('/api/profile', checkIfAuthenticated, profilesController.updateUserProfile);
     },
     start(app: Express, port: number) {
         app.listen(port, () => logger.info({

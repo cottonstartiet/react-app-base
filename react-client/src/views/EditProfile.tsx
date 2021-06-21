@@ -1,23 +1,48 @@
-import React from 'react';
+import React, { FormEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../store';
+import { updateUserProfile } from '../store/updateProfileStore';
+import { RoutePaths } from '../types';
 
 export default function EditProfile() {
+    const appDispatch = useAppDispatch();
+    const { apiStatus } = useAppSelector(state => state.updateProfile)
+    const [title, setTitle] = useState('');
+    const [subtitle, setSubtitle] = useState('');
+
+    function handleSubmit(e: FormEvent) {
+        e.preventDefault();
+        appDispatch(updateUserProfile({
+            title,
+            subtitle
+        }))
+    }
+
+    const isUpdating = apiStatus.status === 'inprogress';
+
+    if (apiStatus.status === 'success') {
+        return (
+            <div>
+                Profile Saved Successfully.
+                <Link to={RoutePaths.profile}>View Profile</Link>
+            </div>
+        )
+    }
+
     return (
         <>
-            <h2>Update Profile</h2>
+            <h2>Edit Profile</h2>
             <hr />
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
-                    <input type="text" placeholder='Name' id='name' readOnly disabled />
+                    <input type="text" placeholder='Title' id='title' onChange={(e) => setTitle(e.target.value)} />
                 </div>
                 <div>
-                    <input type="text" placeholder='Title' id='title' />
+                    <input type="text" placeholder='Subtitle' id='subtitle' onChange={(e) => setSubtitle(e.target.value)} />
                 </div>
                 <div>
-                    <input type="text" placeholder='Subtitle' id='subtitle' />
-                </div>
-                <div>
-                    <button>
-                        Update
+                    <button disabled={apiStatus.status === 'inprogress'}>
+                        {isUpdating ? 'Saving...' : 'Save'}
                     </button>
                 </div>
             </form>

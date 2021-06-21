@@ -9,7 +9,7 @@ export interface IApiStatus<T> {
 export const defaultApiStatus = {
     initial: {
         statusCode: undefined,
-        status: 'inprogress',
+        status: 'default',
         data: undefined
     } as IApiStatus<any>
 }

@@ -7,27 +7,28 @@ import Landing from './views/Landing';
 import Login from './views/Login';
 import UserProfile from './views/UserProfile';
 import EditProfile from './views/EditProfile';
+import { RoutePaths } from './types';
 
 export default function Routes() {
     return (
         <Router>
             <Switch>
-                <Route exact path='/'>
+                <Route exact path={RoutePaths.landing}>
                     <Landing />
                 </Route>
-                <Route path='/login'>
+                <Route path={RoutePaths.login}>
                     <Login />
                 </Route>
-                <PrivateRoute path='/firebase'>
+                <PrivateRoute path={RoutePaths.firebase}>
                     <FirebaseUserInfo />
                 </PrivateRoute>
-                <PrivateRoute path='/profile'>
+                <PrivateRoute path={RoutePaths.profile}>
                     <UserProfile />
                 </PrivateRoute>
-                <PrivateRoute path='/edit-profile'>
+                <PrivateRoute path={RoutePaths.editProfile}>
                     <EditProfile />
                 </PrivateRoute>
-                <PrivateRoute path='/dashboard'>
+                <PrivateRoute path={RoutePaths.dashboard}>
                     <Dashbaord />
                 </PrivateRoute>
             </Switch>

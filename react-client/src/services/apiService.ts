@@ -5,8 +5,11 @@ const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
 axios.defaults.baseURL = apiBaseUrl;
 
 const apiService = {
-    async fetchUserProfile<T>() {
-        return await requestHelper.get<T>(`/profile`);
+    async fetchUserProfile<TResponse>() {
+        return await requestHelper.get<TResponse>(`/profile`);
+    },
+    async updateUserProfile<TPayload, KResponse>(payload: TPayload) {
+        return await requestHelper.patch<KResponse>(`/profile`, payload)
     }
 }
 

@@ -1,14 +1,18 @@
-import { QueryOptions } from 'mongoose'
+import mongoose, { QueryOptions } from 'mongoose'
 import logger from '../logger';
 import { UserProfileModel } from "../models";
-import { IProfilePatchRequest, IUserProfileModel } from "../types";
+import { IProfilePatchRequest } from "../types";
 
 async function getProfileByUserId(uid: string) {
-    return undefined;
+    const result = await UserProfileModel.findOne({
+        uid
+    });
+    return result?.toObject();
 }
 
 async function createOrUpdateProfile(uid: string, profileUpdate: IProfilePatchRequest) {
     const filter = {
+        _id: profileUpdate.id ?? mongoose.Types.ObjectId(),
         uid
     };
     const update = {

@@ -24,13 +24,14 @@ const server = {
         // Conect to MongoDB Server
         try {
             await mongoose.connect(mongodbConfig.connectionString, {
-                useNewUrlParser: true
-            })
+                useNewUrlParser: true,
+                useUnifiedTopology: true
+            });
         } catch (error) {
             logger.error({
                 message: 'Error while connecting to MongoDB',
                 data: error
-            })
+            });
         }
 
         // Configure routes
@@ -41,6 +42,9 @@ const server = {
     start(app: Express, port: number) {
         app.listen(port, () => logger.info({
             message: `App listening on PORT ${port}`
+        })).on('error', (error) => logger.error({
+            message: `Error starting node server on PORT ${port}`,
+            data: error
         }));
     }
 }

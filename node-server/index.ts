@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config(); // This needs to be as early as possible as firebase service gets initialized even before the server is in running state.
 import express from 'express';
 import config from 'config';
 import { IMongodbConfig, IServerConfig } from './types';

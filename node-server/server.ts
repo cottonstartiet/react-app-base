@@ -25,7 +25,8 @@ const server = {
         try {
             await mongoose.connect(mongodbConfig.connectionString, {
                 useNewUrlParser: true,
-                useUnifiedTopology: true
+                useUnifiedTopology: true,
+                useCreateIndex: true,
             });
         } catch (error) {
             logger.error({

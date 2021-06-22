@@ -12,7 +12,6 @@ async function getProfileByUserId(uid: string) {
 
 async function createOrUpdateProfile(uid: string, profileUpdate: IProfilePatchRequest) {
     const filter = {
-        _id: profileUpdate.id ?? mongoose.Types.ObjectId(),
         uid
     };
     const update = {

@@ -8,6 +8,7 @@
     "dev": "concurrently \"npm:tsc\" \"npm:watch\"",
     "tsc": "tsc -w",
     "watch": "nodemon dist/index.js",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {

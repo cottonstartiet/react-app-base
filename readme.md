@@ -25,7 +25,8 @@ This project contains:
 1. `firebase-admin` sdk to manage firebase.
 1. `express` server for creating REST api's.
 1. `helmet` for basic server side security.
-1. `cors` for managing requests coming from web client.
+1. `cors` for allowing requests coming from web client.
+1. Run the server in dev mode with support for typescript compilation and server restart automatically wheneveryou change code.
 
 ## Code
 The server code written in typescript and is divided into modules and layers.
@@ -52,9 +53,37 @@ types
 - server.ts // Actual express server
 ```
 
+### How to run?
+Follow the steps below to run the node api server:
+
+**Steps**
+1. Rename `.env.sample` to `.env`. This file will contain all your secrets and connection strings.
+1. Provide the values required in the `.env` file.
+
+**On Windows:**
+Open a command prompt in the root of the repository and run the below or opena a command prompt in the `node-server` directory:
+```
+cd node-server
+```
+Install npm packages
+```
+npm install
+```
+Run the server in dev mode
+```
+npm run dev
+```  
+### Production Build and Deplyment
+Create a build
+```
+npm run build
+```
+This will create the build in `/dist` folder. To deploy this to production, you will need to copy the `.env` file to the `/dist` folder, provide the setting in the `.env` file based on the environment where you want to deploy your application. These values could be different for various environments.
+
+
 
 ## React Frontend
-This repo also contains a basic creat font end that was bootstrapped using Create-React-App. The frontend itself does not use any UI library as people have different choices and prefernces. The project provides a sample frontend that calls the backend node api to get data from MongoDB. 
+A basic react fontend bootstrapped using create-react-app and is integrated with the node-server. The frontend itself does not use any UI library as people have different choices and prefernces. The project provides a frontend that calls the backend node api to get data from MongoDB. 
 You can use these together as a starting point and extend this to a larger application.
 
 ### Fatures:
@@ -104,6 +133,3 @@ setupTests.ts // File from CRA
 - Swagger integration
 - Api input validation
 - Error handling middleware
-- More clients
-    - React-Native
-    - Flutter

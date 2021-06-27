@@ -33,6 +33,7 @@ const server = {
                 message: 'Error while connecting to MongoDB',
                 data: error
             });
+            throw error;
         }
 
         // Configure routes

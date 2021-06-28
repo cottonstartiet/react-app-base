@@ -1,12 +1,12 @@
 import { CorsOptions } from "cors";
 import express, { Express } from 'express';
-import profilesController from "./controllers/profilesController";
+import { profilesController } from "./controllers";
 import logger from "./logger";
-import { checkIfAuthenticated } from "./middleware/firebaseAuthMiddleware";
 import cors from 'cors';
 import helmet from 'helmet';
 import { IMongodbConfig } from "./types";
 import mongoose from 'mongoose';
+import { firebaseMiddleware } from "./middleware";
 
 interface IServerOptions {
     corsOptions: CorsOptions;
@@ -18,6 +18,7 @@ const server = {
         const { corsOptions, mongodbConfig } = options;
         // Setup Cors
         app.use(cors(corsOptions));
+        // Basic security
         app.use(helmet());
         app.use(express.json());
 
@@ -38,8 +39,8 @@ const server = {
 
         // Configure routes
         // With auth
-        app.get('/api/profile', checkIfAuthenticated, profilesController.getUserProfile);
-        app.patch('/api/profile', checkIfAuthenticated, profilesController.updateUserProfile);
+        app.get('/api/profile', firebaseMiddleware.checkIfAuthenticated, profilesController.getUserProfile);
+        app.patch('/api/profile', firebaseMiddleware.checkIfAuthenticated, profilesController.updateUserProfile);
     },
     start(app: Express, port: number) {
         app.listen(port, () => logger.info({

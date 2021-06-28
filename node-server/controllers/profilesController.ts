@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import logger from "../logger";
-import userProfileService from "../services/userProfileService";
 import { IProfilePatchRequest } from "../types";
 import { IResponseLocals } from "../types/auth";
+import { userProfileService } from "../services";
 
-const profilesController = {
+export const profilesController = {
     async getUserProfile(_: Request, res: Response) {
         const { user } = res.locals as IResponseLocals;
         logger.info({
@@ -38,5 +38,3 @@ const profilesController = {
         return res.status(StatusCodes.CREATED).json(updatedProfile);
     }
 }
-
-export default profilesController;

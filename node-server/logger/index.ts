@@ -1,8 +1,6 @@
 import { ILogData } from "../types";
 import winstonlogger from "./winstonLogger";
 
-
-
 const logger = {
     info(log: ILogData) {
         winstonlogger.info({

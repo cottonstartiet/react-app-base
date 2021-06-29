@@ -60,11 +60,11 @@ utils
 Follow the steps below to run the node api server:
 
 **Steps**
-1. Rename `.env.sample` to `.env`. This file will contain all your secrets and connection strings.
+1. Rename `.env.sample` to `.env`. This file contains all your secrets and connection strings.
 1. Provide the values required in the `.env` file.
 
 **On Windows:**
-Open a command prompt in the root of the repository and run the below or opena a command prompt in the `node-server` directory:
+Open a command prompt in the root of the repository and run the below command and navigate to the `node-server` directory:
 ```
 cd node-server
 ```
@@ -132,6 +132,7 @@ setupTests.ts // File from CRA
 
 ## ToDo
 - Support for GraphQL
+- Integrate Socket.io
 - Encapsulate DB layer
 - Swagger integration
 - Api input validation

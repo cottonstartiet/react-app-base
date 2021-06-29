@@ -1,28 +1,25 @@
 import axios from 'axios';
 import { firebaseApp } from './firebase';
 
-async function getHeader() {
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+axios.defaults.baseURL = apiBaseUrl;
+axios.interceptors.request.use(async (req) => {
     const token = await firebaseApp.auth().currentUser?.getIdToken();
-    return {
-        Authorization: `Bearer ${token}`
+    if (token) {
+        req.headers.authorization = `Bearer ${token}`;
     }
-}
+    return req;
+})
 
 const requestHelper = {
     async get<TResponse>(url: string) {
-        return axios.get<TResponse>(url, {
-            headers: await getHeader()
-        });
+        return axios.get<TResponse>(url);
     },
     async post<TResponse>(url: string, payload: any) {
-        return axios.post<TResponse>(url, payload, {
-            headers: await getHeader()
-        })
+        return axios.post<TResponse>(url)
     },
     async patch<TResponse>(url: string, payload: any) {
-        return axios.patch<TResponse>(url, payload, {
-            headers: await getHeader()
-        })
+        return axios.patch<TResponse>(url)
     }
 }
 

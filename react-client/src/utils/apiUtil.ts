@@ -1,4 +1,5 @@
 import { AxiosResponse } from "axios";
+import httpStatus from "http-status";
 import { ApiStatus, IApiStatus } from "../types";
 
 const apiUtil = {
@@ -6,7 +7,7 @@ const apiUtil = {
         return {
             status: status,
             data: response?.data,
-            statusCode: response?.status
+            statusCode: response?.status || httpStatus.INTERNAL_SERVER_ERROR
         }
     }
 }

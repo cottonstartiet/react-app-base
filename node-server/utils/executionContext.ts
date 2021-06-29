@@ -1,11 +1,5 @@
 import { AsyncLocalStorage } from 'async_hooks';
-import { IExecutionContextOptions } from '../types';
-
-export const ExecutionContext = 'EXECUTION_CONTEXT';
-
-interface IExecutionContext {
-    correlationId: string;
-}
+import { IExecutionContext, IExecutionContextOptions } from '../types';
 
 const asyncLocalStorage = new AsyncLocalStorage<IExecutionContext>();
 

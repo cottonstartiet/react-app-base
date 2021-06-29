@@ -8,6 +8,7 @@ export default function UserProfile() {
     useEffect(() => {
         appDispatch(fetchUserProfile());
     }, [appDispatch]);
+
     return (
         <div>
             <h2>User Profile</h2>
@@ -16,8 +17,8 @@ export default function UserProfile() {
             )}
             {apiStatus.status === 'error' && (
                 <div>
-                    {apiStatus.statusCode}
                     <hr />
+                    {apiStatus.statusCode}
                 </div>
             )}
             {apiStatus.data && (

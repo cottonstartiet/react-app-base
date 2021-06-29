@@ -22,7 +22,7 @@ const updateUserProfile = createAsyncThunk(
     async (payload: UpdateProfileParams, thunkApi) => {
         try {
             var response = await apiService.updateUserProfile<UpdateProfileParams, IUserProfile>(payload);
-            return response;
+            return apiUtil.getApiStatus('success', response);
         } catch (error) {
             return thunkApi.rejectWithValue(apiUtil.getApiStatus('error', error.response));
         }
@@ -37,7 +37,7 @@ export const updateProfileSlice = createSlice({
             state.apiStatus = apiUtil.getApiStatus('inprogress');
         });
         builder.addCase(updateUserProfile.fulfilled, (state, { payload }) => {
-            state.apiStatus = apiUtil.getApiStatus('success', payload)
+            state.apiStatus = payload;
         });
         builder.addCase(updateUserProfile.rejected, (state, { payload }: any) => {
             state.apiStatus = payload;

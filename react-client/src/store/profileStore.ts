@@ -17,7 +17,7 @@ const fetchUserProfile = createAsyncThunk(
     async (_, thunkApi) => {
         try {
             var response = await apiService.fetchUserProfile<IUserProfile>();
-            return response;
+            return apiUtil.getApiStatus('success', response);
         } catch (error) {
             return thunkApi.rejectWithValue(apiUtil.getApiStatus('error', error.response));
         }
@@ -32,7 +32,7 @@ export const profileSlice = createSlice({
             state.apiStatus = apiUtil.getApiStatus('inprogress');
         });
         builder.addCase(fetchUserProfile.fulfilled, (state, { payload }) => {
-            state.apiStatus = apiUtil.getApiStatus('success', payload)
+            state.apiStatus = payload;
         });
         builder.addCase(fetchUserProfile.rejected, (state, { payload }: any) => {
             state.apiStatus = payload;

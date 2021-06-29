@@ -18,7 +18,7 @@ This project contains:
 
 ### Features
 1. `Firebase Authentication:` Authenticate users via firebase on the client and while making api calls, pass the token as `Authorization Bearer <token>` header to access secure content.
-1. `MongoDB:` - Save data in MongoDB usnig `mongoose`.
+1. `MongoDB:` - Save data in MongoDB using `mongoose`.
 1. `Auth middleware:` Secure any api endpoint by simply adding the firebase auth middleware.
 1. `Logger:` Use winston logger to log to a file.
 1. `config` & `dotenv` modules for managing configurations in your application. config module along with `dotenv` provides a convenient way to manage configurations in local development as well as production deployments.

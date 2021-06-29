@@ -26,8 +26,8 @@ This project contains:
 1. `express` server for creating REST api's.
 1. `helmet` for basic server side security.
 1. `cors` for allowing requests coming from web client.
-1. `Request Context` using `AsyncLocalStorage`.
-1. Run the server in dev mode with support for typescript compilation and server restart automatically wheneveryou change code.
+1. `Request Context` using `AsyncLocalStorage` for easily maintaining and logging correlation throughout the the request execution lifecycle.
+1. Run the server in dev mode with support for typescript compilation and server restart automatically whenever you change code.
 
 ## Code
 The server code written in typescript and is divided into modules and layers.
@@ -49,7 +49,9 @@ models
 services
 |- // Services are wrappers that encapsulate interaction with services/db's outide this api. Ideally you should have one service per external endpoint 
 types
-|- // Typescript types and interfaces 
+|- // Typescript types and interfaces
+utils
+|- // Utility and helper functions 
 - index.ts // Starting point of the application that initializes and starts the server
 - server.ts // Actual express server
 ```

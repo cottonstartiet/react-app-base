@@ -7,6 +7,7 @@ import helmet from 'helmet';
 import { IMongodbConfig } from "./types";
 import mongoose from 'mongoose';
 import { firebaseMiddleware } from "./middleware";
+import { correlator } from "./middleware/correlator";
 
 interface IServerOptions {
     corsOptions: CorsOptions;
@@ -39,8 +40,10 @@ const server = {
 
         // Configure routes
         // With auth
-        app.get('/api/profile', firebaseMiddleware.checkIfAuthenticated, profilesController.getUserProfile);
-        app.patch('/api/profile', firebaseMiddleware.checkIfAuthenticated, profilesController.updateUserProfile);
+        app.use('/api/*', correlator());
+        app.use('/api/*', firebaseMiddleware.checkIfAuthenticated)
+        app.get('/api/profile', profilesController.getUserProfile);
+        app.patch('/api/profile', profilesController.updateUserProfile);
     },
     start(app: Express, port: number) {
         app.listen(port, () => logger.info({

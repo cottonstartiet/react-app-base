@@ -26,6 +26,7 @@ This project contains:
 1. `express` server for creating REST api's.
 1. `helmet` for basic server side security.
 1. `cors` for allowing requests coming from web client.
+1. `Request Context` using `AsyncLocalStorage`.
 1. Run the server in dev mode with support for typescript compilation and server restart automatically wheneveryou change code.
 
 ## Code

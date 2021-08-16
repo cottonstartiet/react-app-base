@@ -50,7 +50,7 @@ const server = {
     start(app: Express, port: number) {
         app.listen(port, () => logger.info({
             message: `App listening on PORT ${port}`
-        })).on('error', (error) => logger.error({
+        })).on('error', (error: any) => logger.error({
             message: `Error starting node server on PORT ${port}`,
             data: error
         }));

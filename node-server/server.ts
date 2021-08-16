@@ -41,7 +41,9 @@ const server = {
         // Configure routes
         // With auth
         app.use('/api/*', correlator());
-        app.use('/api/*', firebaseMiddleware.checkIfAuthenticated)
+        app.use('/api/*', firebaseMiddleware.checkIfAuthenticated);
+
+        // Porfile
         app.get('/api/profile', profilesController.getUserProfile);
         app.patch('/api/profile', profilesController.updateUserProfile);
     },

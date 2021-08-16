@@ -62,6 +62,7 @@ Follow the steps below to run the node api server:
 **Steps**
 1. Rename `.env.sample` to `.env`. This file contains all your secrets and connection strings.
 1. Provide the values required in the `.env` file.
+1. To obtain firebase admin related config values, check the docs here: [Firebase Admin Setup](https://firebase.google.com/docs/admin/setup)
 
 **On Windows:**
 Open a command prompt in the root of the repository and run the below command and navigate to the `node-server` directory:

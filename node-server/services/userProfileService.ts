@@ -8,6 +8,7 @@ export const userProfileService = {
         const result = await UserProfileModel.findOne({
             uid
         });
+
         return result?.toObject();
     },
     async createOrUpdateProfile(uid: string, profileUpdate: IProfilePatchRequest) {

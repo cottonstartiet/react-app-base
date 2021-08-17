@@ -16,10 +16,10 @@ const requestHelper = {
         return axios.get<TResponse>(url);
     },
     async post<TResponse>(url: string, payload: any) {
-        return axios.post<TResponse>(url)
+        return axios.post<TResponse>(url);
     },
     async patch<TResponse>(url: string, payload: any) {
-        return axios.patch<TResponse>(url)
+        return axios.patch<TResponse>(url, payload);
     }
 }
 

@@ -90,6 +90,21 @@ This will create the build in `/dist` folder. To deploy this to production, you 
 A basic react fontend bootstrapped using create-react-app and is integrated with the node-server. The frontend itself does not use any UI library as people have different choices and prefernces. The project provides a frontend that calls the backend node api to get data from MongoDB. 
 You can use these together as a starting point and extend this to a larger application.
 
+### How to run?
+Follow the steps below to run the nreact frontend:
+
+**Steps**
+1. Rename `.env.sample` to `.env`. This file contains all your secrets.
+1. Provide the values required in the `.env` file.
+1. Frontend uses firebase for authentication so you will have to setup a firebase project and get the requried values from firebase console.
+1. opne a cmd prompt inside the `react-client` folder and run the commands below:
+
+***On Windows***
+Install npm dependencies
+`yarn` or `npm install`
+
+`yarn start` or `npm run`
+
 ### Fatures:
 1. Built using Typescript.
 1. React app using CRA.

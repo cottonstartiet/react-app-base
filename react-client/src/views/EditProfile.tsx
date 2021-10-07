@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store';
 import { updateUserProfile } from '../store/updateProfileStore';
 import { RoutePaths } from '../types';
+import { Button } from 'react-bootstrap';
 
 export default function EditProfile() {
     const appDispatch = useAppDispatch();
@@ -41,9 +42,9 @@ export default function EditProfile() {
                     <input type="text" placeholder='Subtitle' id='subtitle' onChange={(e) => setSubtitle(e.target.value)} />
                 </div>
                 <div>
-                    <button disabled={apiStatus.status === 'inprogress'}>
+                    <Button variant="primary" type='submit' disabled={apiStatus.status === 'inprogress'}>
                         {isUpdating ? 'Saving...' : 'Save'}
-                    </button>
+                    </Button>
                 </div>
             </form>
         </>

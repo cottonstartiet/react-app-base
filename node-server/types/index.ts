@@ -4,3 +4,4 @@ export * from './logging';
 export * from './profilesApi';
 export * from './models';
 export * from './context';
+export * from './healthCheck';

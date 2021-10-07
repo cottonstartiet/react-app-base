@@ -3,6 +3,7 @@ import './App.css';
 import Routes from './Routes';
 import { Provider } from 'react-redux'
 import store from './store';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

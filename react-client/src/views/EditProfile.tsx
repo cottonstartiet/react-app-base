@@ -7,7 +7,7 @@ import { RoutePaths } from '../types';
 export default function EditProfile() {
     const [title, setTitle] = useState('');
     const [subtitle, setSubtitle] = useState('');
-    const { isLoading, data, error, mutate } = useMutation(apiKeys.updateUserProfile, apiService.updateUserProfile);
+    const { isLoading, mutate, isSuccess } = useMutation(apiKeys.updateUserProfile, apiService.updateUserProfile);
 
     function handleSubmit(e: FormEvent) {
         e.preventDefault();
@@ -17,7 +17,7 @@ export default function EditProfile() {
         });
     }
 
-    if (data && !error) {
+    if (isSuccess) {
         return (
             <Redirect to={RoutePaths.profile} />
         );

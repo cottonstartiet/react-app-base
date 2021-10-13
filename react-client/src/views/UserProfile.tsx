@@ -1,29 +1,22 @@
 import React, { useEffect } from "react";
 import Loading from "../components/Loading";
-import { fetchUserProfile, useAppDispatch, useAppSelector } from "../store";
 
 export default function UserProfile() {
-    const { apiStatus } = useAppSelector(state => state.userProfile)
-    const appDispatch = useAppDispatch();
-    useEffect(() => {
-        appDispatch(fetchUserProfile());
-    }, [appDispatch]);
-
     return (
         <div>
             <h2>User Profile</h2>
-            {apiStatus.status === 'inprogress' && (
+            {/* {apiStatus.status === 'inprogress' && (
                 <Loading />
-            )}
-            {apiStatus.status === 'error' && (
+            )} */}
+            {/* {apiStatus.status === 'error' && (
                 <div>
                     <hr />
                     {apiStatus.statusCode}
                 </div>
-            )}
-            {apiStatus.data && (
+            )} */}
+            {true && (
                 <div>
-                    {JSON.stringify(apiStatus.data, null, 2)}
+                    {'Display profile here'}
                 </div>
             )}
         </div>

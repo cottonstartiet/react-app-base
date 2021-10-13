@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { firebaseApp } from './firebase';
 
 const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
@@ -15,11 +15,11 @@ const requestHelper = {
     async get<TResponse>(url: string) {
         return axios.get<TResponse>(url);
     },
-    async post<TResponse>(url: string, payload: any) {
-        return axios.post<TResponse>(url);
+    async post<TResponse>(url: string, payload: any): Promise<AxiosResponse<TResponse>> {
+        return axios.post(url, payload);
     },
-    async patch<TResponse>(url: string, payload: any) {
-        return axios.patch<TResponse>(url, payload);
+    async patch<TResponse>(url: string, payload: any): Promise<AxiosResponse<TResponse>> {
+        return axios.patch(url, payload);
     }
 }
 

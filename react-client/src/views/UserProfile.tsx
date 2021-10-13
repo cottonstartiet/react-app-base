@@ -1,22 +1,26 @@
-import React, { useEffect } from "react";
 import Loading from "../components/Loading";
+import { useQuery } from 'react-query';
+import { apiKeys, apiService } from "../services/apiService";
+import { AxiosResponse } from "axios";
+import { IUserProfile } from "../types";
 
 export default function UserProfile() {
+    const { isLoading, data, error } = useQuery<AxiosResponse<IUserProfile>>(apiKeys.fetchUserProfile, apiService.fetchUserProfile);
     return (
         <div>
             <h2>User Profile</h2>
-            {/* {apiStatus.status === 'inprogress' && (
+            {isLoading && (
                 <Loading />
-            )} */}
-            {/* {apiStatus.status === 'error' && (
+            )}
+            {error && (
                 <div>
                     <hr />
-                    {apiStatus.statusCode}
+                    {JSON.stringify(error)}
                 </div>
-            )} */}
-            {true && (
+            )}
+            {data && (
                 <div>
-                    {'Display profile here'}
+                    {JSON.stringify(data.data)}
                 </div>
             )}
         </div>

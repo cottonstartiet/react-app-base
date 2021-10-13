@@ -1,24 +1,27 @@
 import { FormEvent, useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import { RoutePaths } from '../types';
-import { Button } from 'react-bootstrap';
+import { useMutation } from 'react-query';
+import { Redirect } from 'react-router-dom';
+import { apiKeys, apiService } from '../services/apiService';
+import { RoutePaths } from '../types';
 
 export default function EditProfile() {
     const [title, setTitle] = useState('');
     const [subtitle, setSubtitle] = useState('');
+    const { isLoading, data, error, mutate } = useMutation(apiKeys.updateUserProfile, apiService.updateUserProfile);
 
     function handleSubmit(e: FormEvent) {
         e.preventDefault();
+        mutate({
+            title,
+            subtitle
+        });
     }
 
-    // if (apiStatus.status === 'success') {
-    //     return (
-    //         <div>
-    //             Profile Saved Successfully.
-    //             <Link to={RoutePaths.profile}>View Profile</Link>
-    //         </div>
-    //     )
-    // }
+    if (data && !error) {
+        return (
+            <Redirect to={RoutePaths.profile} />
+        );
+    }
 
     return (
         <>
@@ -32,9 +35,9 @@ export default function EditProfile() {
                     <input type="text" placeholder='Subtitle' id='subtitle' onChange={(e) => setSubtitle(e.target.value)} />
                 </div>
                 <div>
-                    <Button variant="primary" type='submit' disabled={false}>
-                        {'Save'}
-                    </Button>
+                    <button type='submit' disabled={false}>
+                        {isLoading ? 'Saving...' : 'Save'}
+                    </button>
                 </div>
             </form>
         </>

@@ -1,10 +1,16 @@
 import React from 'react';
 import './App.css';
+import { QueryClient, QueryClientProvider, } from 'react-query'
 import Routes from './Routes';
+
+// Create a client
+const queryClient = new QueryClient()
 
 function App() {
   return (
-    <Routes />
+    <QueryClientProvider client={queryClient}>
+      <Routes />
+    </QueryClientProvider>
   );
 }
 

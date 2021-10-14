@@ -4,3 +4,8 @@ export interface IUserProfile {
     title?: string;
     subtitle?: string;
 }
+
+export interface IUserProfileUpdate {
+    title?: string;
+    subtitle?: string;
+}

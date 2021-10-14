@@ -1,6 +1,6 @@
 import { CorsOptions } from "cors";
 import express, { Express } from 'express';
-import { profilesController } from "./controllers";
+import { profilesController, healthCheckController } from "./controllers";
 import logger from "./logger";
 import cors from 'cors';
 import helmet from 'helmet';
@@ -39,13 +39,18 @@ const server = {
         }
 
         // Configure routes
-        // With auth
         app.use('/api/*', correlator());
-        app.use('/api/*', firebaseMiddleware.checkIfAuthenticated);
 
+        // Without Auth
+        // Health check
+        app.get('/api/health', healthCheckController.getApiHealth);
+
+        // With auth
+        app.use('/api/*', firebaseMiddleware.checkIfAuthenticated);
         // Porfile
         app.get('/api/profile', profilesController.getUserProfile);
         app.patch('/api/profile', profilesController.updateUserProfile);
+
     },
     start(app: Express, port: number) {
         app.listen(port, () => logger.info({

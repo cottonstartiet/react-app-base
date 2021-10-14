@@ -1,12 +1,17 @@
+import { AxiosResponse } from 'axios';
+import { IUserProfile, IUserProfileUpdate } from '../types';
 import requestHelper from './requestHelper';
 
-const apiService = {
-    async fetchUserProfile<TResponse>() {
-        return await requestHelper.get<TResponse>(`/profile`);
-    },
-    async updateUserProfile<TPayload, KResponse>(payload: TPayload) {
-        return await requestHelper.patch<KResponse>(`/profile`, payload)
-    }
+export const apiKeys = {
+    fetchUserProfile: 'GET/profile',
+    updateUserProfile: 'POST/profile'
 }
 
-export default apiService;
+export const apiService = {
+    async fetchUserProfile(): Promise<AxiosResponse<IUserProfile>> {
+        return await requestHelper.get(`/profile`);
+    },
+    async updateUserProfile(payload: IUserProfileUpdate): Promise<AxiosResponse<IUserProfile>> {
+        return await requestHelper.patch(`/profile`, payload)
+    }
+}

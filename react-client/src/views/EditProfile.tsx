@@ -1,32 +1,26 @@
 import { FormEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../store';
-import { updateUserProfile } from '../store/updateProfileStore';
+import { useMutation } from 'react-query';
+import { Redirect } from 'react-router-dom';
+import { apiKeys, apiService } from '../services/apiService';
 import { RoutePaths } from '../types';
 
 export default function EditProfile() {
-    const appDispatch = useAppDispatch();
-    const { apiStatus } = useAppSelector(state => state.updateProfile)
     const [title, setTitle] = useState('');
     const [subtitle, setSubtitle] = useState('');
+    const { isLoading, mutate, isSuccess } = useMutation(apiKeys.updateUserProfile, apiService.updateUserProfile);
 
     function handleSubmit(e: FormEvent) {
         e.preventDefault();
-        appDispatch(updateUserProfile({
+        mutate({
             title,
             subtitle
-        }))
+        });
     }
 
-    const isUpdating = apiStatus.status === 'inprogress';
-
-    if (apiStatus.status === 'success') {
+    if (isSuccess) {
         return (
-            <div>
-                Profile Saved Successfully.
-                <Link to={RoutePaths.profile}>View Profile</Link>
-            </div>
-        )
+            <Redirect to={RoutePaths.profile} />
+        );
     }
 
     return (
@@ -41,8 +35,8 @@ export default function EditProfile() {
                     <input type="text" placeholder='Subtitle' id='subtitle' onChange={(e) => setSubtitle(e.target.value)} />
                 </div>
                 <div>
-                    <button disabled={apiStatus.status === 'inprogress'}>
-                        {isUpdating ? 'Saving...' : 'Save'}
+                    <button type='submit' disabled={false}>
+                        {isLoading ? 'Saving...' : 'Save'}
                     </button>
                 </div>
             </form>

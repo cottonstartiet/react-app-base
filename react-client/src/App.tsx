@@ -1,14 +1,15 @@
 import React from 'react';
-import './App.css';
+import { QueryClient, QueryClientProvider, } from 'react-query'
 import Routes from './Routes';
-import { Provider } from 'react-redux'
-import store from './store';
+
+// Create a client
+const queryClient = new QueryClient()
 
 function App() {
   return (
-    <Provider store={store}>
+    <QueryClientProvider client={queryClient}>
       <Routes />
-    </Provider >
+    </QueryClientProvider>
   );
 }
 

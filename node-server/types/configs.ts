@@ -9,9 +9,3 @@ export interface IServerConfig {
 export interface IMongodbConfig {
     connectionString: string;
 }
-
-export interface IFirebaseAdminConfig {
-    projectId: string;
-    privateKey: string;
-    clientEmail: string;
-}

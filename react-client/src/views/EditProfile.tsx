@@ -3,6 +3,10 @@ import { useMutation } from 'react-query';
 import { Redirect } from 'react-router-dom';
 import { apiKeys, apiService } from '../services/apiService';
 import { RoutePaths } from '../types';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import SaveIcon from '@mui/icons-material/Save';
 
 export default function EditProfile() {
     const [title, setTitle] = useState('');
@@ -27,19 +31,46 @@ export default function EditProfile() {
         <>
             <h2>Edit Profile</h2>
             <hr />
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <input type="text" placeholder='Title' id='title' onChange={(e) => setTitle(e.target.value)} />
-                </div>
-                <div>
-                    <input type="text" placeholder='Subtitle' id='subtitle' onChange={(e) => setSubtitle(e.target.value)} />
-                </div>
-                <div>
-                    <button type='submit' disabled={false}>
-                        {isLoading ? 'Saving...' : 'Save'}
-                    </button>
-                </div>
-            </form>
+            <Box
+                sx={{
+                    m: 1
+                }}>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <TextField
+                            sx={{
+                                m: 1
+                            }}
+                            fullWidth
+                            id="outlined-basic"
+                            label="Title"
+                            variant="outlined"
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <TextField
+                            sx={{
+                                m: 1
+                            }}
+                            fullWidth
+                            id="outlined-basic"
+                            label="Subtitle"
+                            variant="outlined"
+                            onChange={(e) => setSubtitle(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <Button
+                            startIcon={<SaveIcon />}
+                            sx={{
+                                m: 1
+                            }} type='submit' variant="contained">
+                            {isLoading ? 'Saving...' : 'Save'}
+                        </Button>
+                    </div>
+                </form>
+            </Box>
         </>
     )
 }

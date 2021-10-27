@@ -41,7 +41,6 @@ export default function EditProfile() {
                             sx={{
                                 m: 1
                             }}
-                            fullWidth
                             id="outlined-basic"
                             label="Title"
                             variant="outlined"
@@ -53,7 +52,6 @@ export default function EditProfile() {
                             sx={{
                                 m: 1
                             }}
-                            fullWidth
                             id="outlined-basic"
                             label="Subtitle"
                             variant="outlined"

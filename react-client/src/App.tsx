@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider, StyledEngineProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 import { QueryClient, QueryClientProvider, } from 'react-query'
 import Routes from './Routes';
 import theme from './theme';
@@ -10,11 +10,9 @@ const queryClient = new QueryClient()
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <StyledEngineProvider injectFirst>
-        {/* <ThemeProvider theme={theme}> */}
+      <ThemeProvider theme={theme}>
         <Routes />
-        {/* </ThemeProvider> */}
-      </StyledEngineProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

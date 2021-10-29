@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
-import Dashbaord from './views/Dashboard';
-import FirebaseUserInfo from './views/FirebaseUserInfo';
-import Landing from './views/Landing';
-import Login from './views/Login';
-import UserProfile from './views/UserProfile';
-import EditProfile from './views/EditProfile';
+import FirebaseUserInfo from './pages/FirebaseUserInfo';
+import Landing from './pages/Landing';
+import Login from './pages/Login';
+import UserProfile from './pages/UserProfile';
+import EditProfile from './pages/EditProfile';
 import { RoutePaths } from './types';
+import DashboardLayout from './components/DashboardLayout';
 
 export default function Routes() {
     return (
@@ -29,7 +29,7 @@ export default function Routes() {
                     <EditProfile />
                 </PrivateRoute>
                 <PrivateRoute path={RoutePaths.dashboard}>
-                    <Dashbaord />
+                    <DashboardLayout />
                 </PrivateRoute>
             </Switch>
         </Router>

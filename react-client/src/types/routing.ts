@@ -2,7 +2,12 @@ export const RoutePaths = {
     landing: '/',
     login: '/login',
     firebase: '/firebase',
-    profile: '/profile',
     editProfile: '/edit-profile',
-    dashboard: '/dashboard'
+    dashboard: '/dashboard',
+    dashboardHome: '/app/home',
+    customers: '/app/customers',
+    products: '/app/products',
+    profile: '/app/profile',
+    settings: '/app/settings',
+    register: '/app/register'
 }

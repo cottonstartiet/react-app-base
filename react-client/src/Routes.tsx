@@ -7,7 +7,7 @@ import Login from './pages/Login';
 import UserProfile from './pages/UserProfile';
 import EditProfile from './pages/EditProfile';
 import { RoutePaths } from './types';
-import DashboardLayout from './components/DashboardLayout';
+import DashboardLayout from './pages/DashboardLayout';
 
 export default function Routes() {
     return (

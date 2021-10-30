@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import NavItem from './NavItem';
 import { AccountBox, BarChart, Error, Lock, People, Settings, ShoppingBasket } from '@mui/icons-material';
+import { firebaseApp } from '../services/firebase';
 
 const user = {
   avatar: '/static/images/avatars/avatar_6.png',
@@ -157,8 +158,9 @@ const DashboardSidebar = ({ onMobileClose, openMobile }: any) => {
             component="a"
             href="https://react-material-kit.devias.io"
             variant="contained"
+            onClick={() => firebaseApp.auth().signOut()}
           >
-            See PRO version
+            Logout
           </Button>
         </Box>
       </Box>

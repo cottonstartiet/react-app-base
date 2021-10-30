@@ -62,7 +62,7 @@ const DashboardLayout = () => {
           <DashboardLayoutContent>
             <Router>
               <Switch>
-                <Route exact path={RoutePaths.dashboardHome}>
+                <Route exact path={RoutePaths.dashboard}>
                   <DashboardHome />
                 </Route>
                 <Route path={RoutePaths.customers}>
@@ -77,15 +77,6 @@ const DashboardLayout = () => {
                 <PrivateRoute path={RoutePaths.settings}>
                   <Settings />
                 </PrivateRoute>
-                <PrivateRoute path={RoutePaths.login}>
-                  <Login />
-                </PrivateRoute>
-                <PrivateRoute path={RoutePaths.register}>
-                  <Register />
-                </PrivateRoute>
-                {/* <PrivateRoute path={RoutePaths.error}>
-                  <Error />
-                </PrivateRoute> */}
               </Switch>
             </Router>
           </DashboardLayoutContent>

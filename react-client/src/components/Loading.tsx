@@ -1,9 +1,10 @@
 import React from "react";
+import NavbarBlank from "./NavbarBlank";
 
 export default function Loading() {
     return (
-        <div>
-            <h2>Loading...</h2>
-        </div>
+        <>
+            <NavbarBlank />
+        </>
     );
 }

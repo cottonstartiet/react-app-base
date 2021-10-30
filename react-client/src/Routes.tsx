@@ -8,8 +8,41 @@ import UserProfile from './pages/UserProfile';
 import EditProfile from './pages/EditProfile';
 import { RoutePaths } from './types';
 import DashboardLayout from './pages/DashboardLayout';
+import { useAuth } from './hooks';
+import Register from './pages/Register';
+import Error from './pages/Error';
+import Loading from './components/Loading';
 
 export default function Routes() {
+    const { signinStatus, user } = useAuth();
+
+    if (signinStatus == 'inprogress') {
+        return (
+            <Loading />
+        );
+    }
+
+    if (signinStatus == 'signedin' && user) {
+        return (
+            <Router>
+                <Switch>
+                    {/* <PrivateRoute path={RoutePaths.firebase}>
+                        <FirebaseUserInfo />
+                    </PrivateRoute>
+                    <PrivateRoute path={RoutePaths.profile}>
+                        <UserProfile />
+                    </PrivateRoute>
+                    <PrivateRoute path={RoutePaths.editProfile}>
+                        <EditProfile />
+                    </PrivateRoute> */}
+                    <PrivateRoute path={RoutePaths.dashboard}>
+                        <DashboardLayout />
+                    </PrivateRoute>
+                </Switch>
+            </Router>
+        );
+    }
+
     return (
         <Router>
             <Switch>
@@ -19,18 +52,12 @@ export default function Routes() {
                 <Route path={RoutePaths.login}>
                     <Login />
                 </Route>
-                <PrivateRoute path={RoutePaths.firebase}>
-                    <FirebaseUserInfo />
-                </PrivateRoute>
-                <PrivateRoute path={RoutePaths.profile}>
-                    <UserProfile />
-                </PrivateRoute>
-                <PrivateRoute path={RoutePaths.editProfile}>
-                    <EditProfile />
-                </PrivateRoute>
-                <PrivateRoute path={RoutePaths.dashboard}>
-                    <DashboardLayout />
-                </PrivateRoute>
+                <Route path={RoutePaths.register}>
+                    <Register />
+                </Route>
+                <Route path={RoutePaths.notFound}>
+                    <Error />
+                </Route>
             </Switch>
         </Router>
     );

@@ -14,6 +14,7 @@ import {
 import NavItem from './NavItem';
 import { AccountBox, BarChart, Error, Lock, People, Settings, ShoppingBasket } from '@mui/icons-material';
 import { firebaseApp } from '../services/firebase';
+import { RoutePaths } from '../types';
 
 const user = {
   avatar: '/static/images/avatars/avatar_6.png',
@@ -23,44 +24,39 @@ const user = {
 
 const items = [
   {
-    href: '/app/dashboard',
+    href: RoutePaths.dashboard,
     icon: BarChart,
     title: 'Dashboard'
   },
   {
-    href: '/app/customers',
+    href: RoutePaths.customers,
     icon: People,
     title: 'Customers'
   },
   {
-    href: '/app/products',
+    href: RoutePaths.products,
     icon: ShoppingBasket,
     title: 'Products'
   },
   {
-    href: '/app/account',
+    href: RoutePaths.profile,
     icon: AccountBox,
     title: 'Account'
   },
   {
-    href: '/app/settings',
+    href: RoutePaths.settings,
     icon: Settings,
     title: 'Settings'
   },
   {
-    href: '/login',
+    href: RoutePaths.login,
     icon: Lock,
     title: 'Login'
   },
   {
-    href: '/register',
+    href: RoutePaths.register,
     icon: AccountBox,
     title: 'Register'
-  },
-  {
-    href: '/404',
-    icon: Error,
-    title: 'Error'
   }
 ];
 
@@ -155,8 +151,6 @@ const DashboardSidebar = ({ onMobileClose, openMobile }: any) => {
         >
           <Button
             color="primary"
-            component="a"
-            href="https://react-material-kit.devias.io"
             variant="contained"
             onClick={() => firebaseApp.auth().signOut()}
           >

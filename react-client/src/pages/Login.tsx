@@ -13,10 +13,10 @@ import {
 } from '@mui/material';
 import FacebookIcon from '../icons/Facebook';
 import GoogleIcon from '../icons/Google';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { firebaseApp, firebaseUiConfig } from '../services/firebase';
 
 const Login = () => {
-  // const navigate = useNavigate();
-
   return (
     <>
       <Helmet>
@@ -32,6 +32,25 @@ const Login = () => {
         }}
       >
         <Container maxWidth="sm">
+          <Box sx={{ mb: 3 }}>
+            <Typography
+              color="textPrimary"
+              variant="h2"
+            >
+              Sign in
+            </Typography>
+            <Typography
+              color="textSecondary"
+              gutterBottom
+              variant="body2"
+            >
+              Sign in on the internal platform
+            </Typography>
+          </Box>
+          <StyledFirebaseAuth
+            uiConfig={firebaseUiConfig}
+            firebaseAuth={firebaseApp.auth()}
+          />
           <Formik
             initialValues={{
               email: 'demo@devias.io',
@@ -55,22 +74,7 @@ const Login = () => {
               values
             }: any) => (
               <form onSubmit={handleSubmit}>
-                <Box sx={{ mb: 3 }}>
-                  <Typography
-                    color="textPrimary"
-                    variant="h2"
-                  >
-                    Sign in
-                  </Typography>
-                  <Typography
-                    color="textSecondary"
-                    gutterBottom
-                    variant="body2"
-                  >
-                    Sign in on the internal platform
-                  </Typography>
-                </Box>
-                <Grid
+                {/* <Grid
                   container
                   spacing={3}
                 >
@@ -105,7 +109,7 @@ const Login = () => {
                       Login with Google
                     </Button>
                   </Grid>
-                </Grid>
+                </Grid> */}
                 <Box
                   sx={{
                     pb: 1,

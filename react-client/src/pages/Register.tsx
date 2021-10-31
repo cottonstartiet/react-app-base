@@ -12,8 +12,26 @@ import {
   TextField,
   Typography
 } from '@mui/material';
+import { Redirect, useLocation } from 'react-router-dom';
+import Loading from '../components/Loading';
+import { useAuth } from '../hooks';
+import { RoutePaths } from '../types';
 
 const Register = () => {
+  const { signinStatus } = useAuth();
+  const location = useLocation();
+
+  if (signinStatus === 'inprogress') {
+    return (
+      <Loading />
+    );
+  }
+
+  if (signinStatus === 'signedin') {
+    let { from }: any = location.state || { from: { pathname: RoutePaths.dashboard } };
+    return <Redirect to={from} />
+  }
+
   return (
     <>
       <Helmet>

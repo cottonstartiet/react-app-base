@@ -5,7 +5,7 @@ import { useAuth } from "../hooks";
 import { RoutePaths } from "../types";
 
 export default function Landing() {
-    const { signinStatus, user } = useAuth();
+    const { signinStatus } = useAuth();
 
     if (signinStatus === 'inprogress') {
         return <Loading />

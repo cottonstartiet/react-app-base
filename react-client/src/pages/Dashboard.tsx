@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { styled } from '@mui/material/styles';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import DashboardNavbar from '../components/DashboardNavbar';
 import DashboardSidebar from '../components/DashboardSidebar';
 import { RoutePaths } from '../types';

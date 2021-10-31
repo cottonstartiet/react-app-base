@@ -3,7 +3,6 @@ import {
   matchPath,
   useLocation
 } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { Button, ListItem } from '@mui/material';
 
 const NavItem = ({
@@ -56,12 +55,6 @@ const NavItem = ({
       </Button>
     </ListItem>
   );
-};
-
-NavItem.propTypes = {
-  href: PropTypes.string,
-  icon: PropTypes.elementType,
-  title: PropTypes.string
 };
 
 export default NavItem;

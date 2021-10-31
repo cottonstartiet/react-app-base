@@ -1,4 +1,4 @@
-export default [
+const products = [
     {
         id: 1,
         createdAt: '27/03/2019',
@@ -48,3 +48,5 @@ export default [
         totalDownloads: '835'
     }
 ];
+
+export default products;

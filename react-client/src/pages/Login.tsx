@@ -11,12 +11,28 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import FacebookIcon from '../icons/Facebook';
-import GoogleIcon from '../icons/Google';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { firebaseApp, firebaseUiConfig } from '../services/firebase';
+import { Redirect, useLocation } from 'react-router-dom';
+import Loading from '../components/Loading';
+import { useAuth } from '../hooks';
+import { RoutePaths } from '../types';
 
 const Login = () => {
+  const { signinStatus } = useAuth();
+  const location = useLocation();
+
+  if (signinStatus === 'inprogress') {
+    return (
+      <Loading />
+    );
+  }
+
+  if (signinStatus === 'signedin') {
+    let { from }: any = location.state || { from: { pathname: RoutePaths.dashboard } };
+    return <Redirect to={from} />
+  }
+
   return (
     <>
       <Helmet>
@@ -74,42 +90,6 @@ const Login = () => {
               values
             }: any) => (
               <form onSubmit={handleSubmit}>
-                {/* <Grid
-                  container
-                  spacing={3}
-                >
-                  <Grid
-                    item
-                    xs={12}
-                    md={6}
-                  >
-                    <Button
-                      color="primary"
-                      fullWidth
-                      startIcon={<FacebookIcon />}
-                      onClick={handleSubmit}
-                      size="large"
-                      variant="contained"
-                    >
-                      Login with Facebook
-                    </Button>
-                  </Grid>
-                  <Grid
-                    item
-                    xs={12}
-                    md={6}
-                  >
-                    <Button
-                      fullWidth
-                      startIcon={<GoogleIcon />}
-                      onClick={handleSubmit}
-                      size="large"
-                      variant="contained"
-                    >
-                      Login with Google
-                    </Button>
-                  </Grid>
-                </Grid> */}
                 <Box
                   sx={{
                     pb: 1,

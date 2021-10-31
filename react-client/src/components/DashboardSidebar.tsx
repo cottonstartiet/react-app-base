@@ -12,7 +12,7 @@ import {
   Typography
 } from '@mui/material';
 import NavItem from './NavItem';
-import { AccountBox, BarChart, Error, Lock, People, Settings, ShoppingBasket } from '@mui/icons-material';
+import { AccountBox, BarChart, People, Settings, ShoppingBasket } from '@mui/icons-material';
 import { firebaseApp } from '../services/firebase';
 import { RoutePaths } from '../types';
 
@@ -47,16 +47,6 @@ const items = [
     href: RoutePaths.settings,
     icon: Settings,
     title: 'Settings'
-  },
-  {
-    href: RoutePaths.login,
-    icon: Lock,
-    title: 'Login'
-  },
-  {
-    href: RoutePaths.register,
-    icon: AccountBox,
-    title: 'Register'
   }
 ];
 

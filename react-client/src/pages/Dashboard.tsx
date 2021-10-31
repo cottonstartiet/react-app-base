@@ -3,15 +3,12 @@ import { styled } from '@mui/material/styles';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import DashboardNavbar from '../components/DashboardNavbar';
 import DashboardSidebar from '../components/DashboardSidebar';
-import { RoutePaths } from './../types';
+import { RoutePaths } from '../types';
 import Account from './Account';
 import DashboardHome from './DashboardHome';
 import CustomerList from './CustomerList';
 import ProductList from './ProductList';
 import Settings from './Settings';
-import PrivateRoute from '../components/PrivateRoute';
-import Login from './Login';
-import Register from './Register';
 
 const DashboardLayoutRoot = styled('div')(
   ({ theme }: any) => ({
@@ -47,7 +44,7 @@ const DashboardLayoutContent = styled('div')({
   overflow: 'auto'
 });
 
-const DashboardLayout = () => {
+const Dashboard = () => {
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
 
   return (
@@ -60,25 +57,23 @@ const DashboardLayout = () => {
       <DashboardLayoutWrapper>
         <DashboardLayoutContainer>
           <DashboardLayoutContent>
-            <Router>
-              <Switch>
-                <Route exact path={RoutePaths.dashboard}>
-                  <DashboardHome />
-                </Route>
-                <Route path={RoutePaths.customers}>
-                  <CustomerList />
-                </Route>
-                <PrivateRoute path={RoutePaths.products}>
-                  <ProductList />
-                </PrivateRoute>
-                <PrivateRoute path={RoutePaths.profile}>
-                  <Account />
-                </PrivateRoute>
-                <PrivateRoute path={RoutePaths.settings}>
-                  <Settings />
-                </PrivateRoute>
-              </Switch>
-            </Router>
+            <Switch>
+              <Route path={RoutePaths.customers}>
+                <CustomerList />
+              </Route>
+              <Route path={RoutePaths.products}>
+                <ProductList />
+              </Route>
+              <Route path={RoutePaths.profile}>
+                <Account />
+              </Route>
+              <Route path={RoutePaths.settings}>
+                <Settings />
+              </Route>
+              <Route path={RoutePaths.dashboard}>
+                <DashboardHome />
+              </Route>
+            </Switch>
           </DashboardLayoutContent>
         </DashboardLayoutContainer>
       </DashboardLayoutWrapper>
@@ -86,4 +81,4 @@ const DashboardLayout = () => {
   );
 };
 
-export default DashboardLayout;
+export default Dashboard;

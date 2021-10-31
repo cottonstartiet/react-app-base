@@ -1,4 +1,4 @@
-export default [
+const customers = [
     {
         id: 1,
         address: {
@@ -140,3 +140,5 @@ export default [
         phone: '801-301-7894'
     }
 ];
+
+export default customers;

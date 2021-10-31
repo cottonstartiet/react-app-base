@@ -1,5 +1,10 @@
 import { styled } from '@mui/material/styles';
 import MainNavbar from './MainNavbar';
+import { Route, Switch } from 'react-router-dom';
+import { RoutePaths } from '../types';
+import Login from '../pages/Login';
+import Register from '../pages/Register';
+import Landing from '../pages/Landing';
 
 const MainLayoutRoot = styled('div')(
   ({ theme }) => ({
@@ -36,7 +41,17 @@ const MainLayout = () => (
     <MainLayoutWrapper>
       <MainLayoutContainer>
         <MainLayoutContent>
-          {'Render main content here'}
+          <Switch>
+            <Route exact path={RoutePaths.landing}>
+              <Landing />
+            </Route>
+            <Route path={RoutePaths.login}>
+              <Login />
+            </Route>
+            <Route path={RoutePaths.register}>
+              <Register />
+            </Route>
+          </Switch>
         </MainLayoutContent>
       </MainLayoutContainer>
     </MainLayoutWrapper>

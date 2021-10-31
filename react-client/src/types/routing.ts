@@ -2,11 +2,10 @@ export const RoutePaths = {
     landing: '/',
     login: '/login',
     register: '/register',
-    firebase: '/firebase',
-    dashboard: '/',
-    customers: '/customers',
-    products: '/products',
-    profile: '/profile',
-    settings: '/settings',
+    dashboard: '/app',
+    customers: '/app/customers',
+    products: '/app/products',
+    profile: '/app/profile',
+    settings: '/app/settings',
     notFound: '*'
 }

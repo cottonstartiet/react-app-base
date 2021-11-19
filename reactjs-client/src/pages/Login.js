@@ -11,11 +11,14 @@ import {
   TextField,
   Typography
 } from '@mui/material';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import firebaseService from '../services/firebase';
 import FacebookIcon from '../icons/Facebook';
 import GoogleIcon from '../icons/Google';
 
 const Login = () => {
   const navigate = useNavigate();
+  const { firebaseApp, firebaseUiConfig } = firebaseService;
 
   return (
     <>
@@ -31,6 +34,10 @@ const Login = () => {
           justifyContent: 'center'
         }}
       >
+        <StyledFirebaseAuth
+          uiConfig={firebaseUiConfig}
+          firebaseAuth={firebaseApp.auth()}
+        />
         <Container maxWidth="sm">
           <Formik
             initialValues={{

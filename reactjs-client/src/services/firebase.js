@@ -1,5 +1,5 @@
-import 'firebase/auth';
-import firebase from 'firebase/app';
+import 'firebase/compat/auth';
+import firebase from 'firebase/compat/app';
 
 const configuration = {
   apiKey: process.env.REACT_APP_FBASE_API_KEY,
@@ -10,28 +10,26 @@ const configuration = {
   appId: process.env.REACT_APP_FBASE_APP_ID
 };
 
-const firebaseApp = firebase.initializeApp(configuration);
-
-const firebaseUiConfig = {
-  signInFlow: 'popup',
-  // signInSuccessUrl: '/editor',
-  signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
-  ],
-  callbacks: {
-    signInSuccessWithAuthResult: () => false
-  },
-  // tosUrl and privacyPolicyUrl accept either url string or a callback
-  // function.
-  // Terms of service url/callback.
-  tosUrl: '/tos',
-  // Privacy policy url/callback.
-  privacyPolicyUrl: '/privacy-policy'
+const firebaseService = {
+  firebaseApp: firebase.initializeApp(configuration),
+  firebaseUiConfig: {
+    signInFlow: 'popup',
+    // signInSuccessUrl: '/editor',
+    signInOptions: [
+      // Leave the lines as is for the providers you want to offer your users.
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    ],
+    callbacks: {
+      signInSuccessWithAuthResult: () => false
+    },
+    // tosUrl and privacyPolicyUrl accept either url string or a callback
+    // function.
+    // Terms of service url/callback.
+    tosUrl: '/tos',
+    // Privacy policy url/callback.
+    privacyPolicyUrl: '/privacy-policy'
+  }
 };
 
-export {
-  firebaseUiConfig,
-  firebaseApp
-};
+export default firebaseService;

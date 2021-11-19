@@ -167,7 +167,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
             href="https://react-material-kit.devias.io"
             variant="contained"
           >
-            See PRO version
+            Logout
           </Button>
         </Box>
       </Box>

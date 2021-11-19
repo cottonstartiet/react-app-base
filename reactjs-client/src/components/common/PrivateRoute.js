@@ -1,26 +1,30 @@
 import { Redirect, Route } from 'react-router-dom';
-import { useAuth, signinStatus } from '../hooks';
+import { useAuth } from '../../hooks';
 import Loading from './Loading';
 
-function PrivateRoute(props) {
-    const { signinStatus, user } = useAuth();
-    const { children, ...rest } = props;
+export default function PrivateRoute(props) {
+  const { signinStatus, user } = useAuth();
+  // eslint-disable-next-line react/prop-types
+  const { children, ...rest } = props;
 
-    if (signinStatus === signinStatus.inprogress) {
-        return <Loading />
-    }
+  if (signinStatus === signinStatus.inprogress) {
+    return <Loading />;
+  }
 
-    return (
-        <Route
-            {...rest}
-            render={({ location }) => !!user ? (
-                children
-            ) : (<Redirect to={{
-                pathname: '/login',
-                state: {
-                    from: location
-                }
-            }} />)}
+  return (
+    <Route
+      {...rest}
+      render={({ location }) => (user ? (
+        children
+      ) : (
+        <Redirect to={{
+          pathname: '/login',
+          state: {
+            from: location
+          }
+        }}
         />
-    );
+      ))}
+    />
+  );
 }

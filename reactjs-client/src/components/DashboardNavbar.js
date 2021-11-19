@@ -23,6 +23,11 @@ const DashboardNavbar = ({ onMobileNavOpen, ...rest }) => {
       {...rest}
     >
       <Toolbar>
+        <Hidden lgUp>
+          <IconButton color="inherit" onClick={onMobileNavOpen} size="large">
+            <MenuIcon />
+          </IconButton>
+        </Hidden>
         <RouterLink to="/">
           <Logo />
         </RouterLink>
@@ -39,11 +44,6 @@ const DashboardNavbar = ({ onMobileNavOpen, ...rest }) => {
           </IconButton>
           <IconButton color="inherit" size="large">
             <InputIcon />
-          </IconButton>
-        </Hidden>
-        <Hidden lgUp>
-          <IconButton color="inherit" onClick={onMobileNavOpen} size="large">
-            <MenuIcon />
           </IconButton>
         </Hidden>
       </Toolbar>

@@ -1,10 +1,10 @@
 import { Redirect, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { useAuth } from '../../hooks';
 import Loading from './Loading';
 
-export default function PrivateRoute(props) {
+function PrivateRoute(props) {
   const { signinStatus, user } = useAuth();
-  // eslint-disable-next-line react/prop-types
   const { children, ...rest } = props;
 
   if (signinStatus === signinStatus.inprogress) {
@@ -28,3 +28,9 @@ export default function PrivateRoute(props) {
     />
   );
 }
+
+PrivateRoute.propTypes = {
+  children: PropTypes.element,
+};
+
+export default PrivateRoute;

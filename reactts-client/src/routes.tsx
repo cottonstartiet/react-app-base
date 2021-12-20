@@ -1,4 +1,5 @@
 import { Navigate } from 'react-router-dom';
+import PrivateRoute from './components/common/PrivateRoute';
 import DashboardLayout from './components/DashboardLayout';
 import MainLayout from './components/MainLayout';
 import Account from './pages/Account';
@@ -12,28 +13,31 @@ import Settings from './pages/Settings';
 
 const routes = [
   {
-    path: 'app',
-    element: <DashboardLayout />,
-    children: [
-      { path: 'account', element: <Account /> },
-      { path: 'customers', element: <CustomerList /> },
-      { path: 'dashboard', element: <Dashboard /> },
-      { path: 'products', element: <ProductList /> },
-      { path: 'settings', element: <Settings /> },
-      { path: '*', element: <Navigate to="/404" /> }
-    ]
-  },
-  {
     path: '/',
     element: <MainLayout />,
     children: [
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Register /> },
       { path: '404', element: <NotFound /> },
-      { path: '/', element: <Navigate to="/app/dashboard" /> },
-      { path: '*', element: <Navigate to="/404" /> }
+      { path: '/', element: <Navigate to="/app/dashboard" /> }
     ]
-  }
+  },
+  {
+    path: '/app',
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      { path: 'dashboard', element: <Dashboard /> },
+      { path: 'account', element: <Account /> },
+      { path: 'customers', element: <CustomerList /> },
+      { path: 'products', element: <ProductList /> },
+      { path: 'settings', element: <Settings /> },
+    ]
+  },
+  { path: '*', element: <Navigate to="/404" /> }
 ];
 
 export default routes;

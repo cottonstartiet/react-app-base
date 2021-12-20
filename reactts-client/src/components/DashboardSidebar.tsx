@@ -22,6 +22,7 @@ import {
   Users as UsersIcon
 } from 'react-feather';
 import NavItem from './NavItem';
+import firebaseService from '../services/firebase';
 
 const user = {
   avatar: '/static/images/avatars/avatar_6.png',
@@ -152,7 +153,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }: any) => {
           align="center"
           variant="body2"
         >
-          Upgrade to PRO version and access 20 more screens
+          Upgrade to PRO version
         </Typography>
         <Box
           sx={{
@@ -164,8 +165,8 @@ const DashboardSidebar = ({ onMobileClose, openMobile }: any) => {
           <Button
             color="primary"
             component="a"
-            href="https://react-material-kit.devias.io"
             variant="contained"
+            onClick={() => firebaseService.firebaseApp.auth().signOut()}
           >
             Logout
           </Button>

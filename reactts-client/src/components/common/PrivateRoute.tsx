@@ -1,31 +1,27 @@
-import { Navigate, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../hooks';
 import Loading from './Loading';
+import { signinState } from '../../constants';
 
 function PrivateRoute(props: any) {
+  const navigate = useNavigate();
   const { signinStatus, user } = useAuth();
-  const { children, ...rest } = props;
+  const { children } = props;
 
-  if (signinStatus === signinStatus.inprogress) {
+  if (signinStatus === signinState.inprogress) {
     return <Loading />;
   }
 
-  return (
-    <Route
-      {...rest}
-      render={({ location }: any) => (user ? (
-        children
-      ) : (
-        <Navigate to='/login'
-          replace={true}
-          state={{
-            from: location
-          }}
-        />
-      ))}
-    />
-  );
+  console.log(signinStatus);
+
+  if (signinStatus === signinState.signedout) {
+    navigate(`/login`, {
+      replace: true
+    });
+  }
+
+  return (children);
 }
 
 PrivateRoute.propTypes = {

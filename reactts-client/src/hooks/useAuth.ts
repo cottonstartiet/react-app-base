@@ -1,28 +1,23 @@
 import { useEffect, useState } from 'react';
+import { signinState } from '../constants';
 import firebase from '../services/firebase';
-
-const signinStatus = {
-  inprogress: 'inprogress',
-  signedin: 'signedin',
-  signedout: 'signedout'
-};
 
 function useAuth() {
   const [signinInfo, setSigninStatus] = useState<any>({
-    status: signinStatus.inprogress,
+    status: signinState.inprogress,
     user: undefined
   });
 
   // Listen to the Firebase Auth state and set the local state.
   useEffect(() => {
     setSigninStatus({
-      status: signinStatus.inprogress,
+      status: signinState.inprogress,
       user: undefined
     });
     const unregisterAuthObserver = firebase.firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
         setSigninStatus({
-          status: signinStatus.signedin,
+          status: signinState.signedin,
           user: {
             uid: user.uid,
             email: user.email,
@@ -34,7 +29,7 @@ function useAuth() {
         });
       } else {
         setSigninStatus({
-          status: signinStatus.signedout,
+          status: signinState.signedout,
           user: undefined
         });
       }
@@ -49,6 +44,5 @@ function useAuth() {
 }
 
 export {
-  useAuth,
-  signinStatus
-};
+  useAuth
+}

@@ -1,4 +1,4 @@
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink, Navigate, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -13,12 +13,21 @@ import {
 } from '@mui/material';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebaseService from '../services/firebase';
-import FacebookIcon from '../icons/Facebook';
-import GoogleIcon from '../icons/Google';
+import { useAuth } from '../hooks';
+import { signinState } from '../constants';
+// import FacebookIcon from '../icons/Facebook';
+// import GoogleIcon from '../icons/Google';
 
 const Login = () => {
+  const { signinStatus, user } = useAuth();
   const navigate = useNavigate();
   const { firebaseApp, firebaseUiConfig } = firebaseService;
+
+  if (signinStatus === signinState.signedin && user) {
+    return (
+      <Navigate to={'/app/dashboard'} />
+    );
+  }
 
   return (
     <>

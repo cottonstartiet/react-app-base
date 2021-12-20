@@ -6,7 +6,7 @@ import { signinState } from '../../constants';
 
 function PrivateRoute(props: any) {
   const navigate = useNavigate();
-  const { signinStatus, user } = useAuth();
+  const { signinStatus } = useAuth();
   const { children } = props;
 
   if (signinStatus === signinState.inprogress) {

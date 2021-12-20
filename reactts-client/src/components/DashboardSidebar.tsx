@@ -23,12 +23,7 @@ import {
 } from 'react-feather';
 import NavItem from './NavItem';
 import firebaseService from '../services/firebase';
-
-const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
-  jobTitle: 'Senior Developer',
-  name: 'Katarina Smith'
-};
+import { useAuth } from '../hooks';
 
 const items = [
   {
@@ -75,6 +70,8 @@ const items = [
 
 const DashboardSidebar = ({ onMobileClose, openMobile }: any) => {
   const location = useLocation();
+  const { user } = useAuth();
+  const jobTitle = 'Senior Developer';
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
@@ -100,7 +97,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }: any) => {
       >
         <Avatar
           component={RouterLink}
-          src={user.avatar}
+          src={user?.picture}
           sx={{
             cursor: 'pointer',
             width: 64,
@@ -112,13 +109,13 @@ const DashboardSidebar = ({ onMobileClose, openMobile }: any) => {
           color="textPrimary"
           variant="h5"
         >
-          {user.name}
+          {user?.name}
         </Typography>
         <Typography
           color="textSecondary"
           variant="body2"
         >
-          {user.jobTitle}
+          {jobTitle}
         </Typography>
       </Box>
       <Divider />

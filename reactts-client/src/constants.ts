@@ -4,6 +4,11 @@ const signinState = {
     signedout: 'signedout'
 };
 
+const routePaths = {
+    appDashboard: '/app/dashboard'
+}
+
 export {
-    signinState
+    signinState,
+    routePaths
 };

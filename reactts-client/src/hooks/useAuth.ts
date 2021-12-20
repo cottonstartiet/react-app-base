@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react';
 import { signinState } from '../constants';
 import firebase from '../services/firebase';
+import { IUser } from '../types';
 
 function useAuth() {
-  const [signinInfo, setSigninStatus] = useState<any>({
+  const [signinInfo, setSigninStatus] = useState<{
+    status: string,
+    user?: IUser
+  }>({
     status: signinState.inprogress,
     user: undefined
   });
@@ -20,10 +24,10 @@ function useAuth() {
           status: signinState.signedin,
           user: {
             uid: user.uid,
-            email: user.email,
-            name: user.displayName,
-            picture: user.photoURL,
-            user_id: user.uid,
+            email: user.email || '',
+            name: user.displayName || '',
+            picture: user.photoURL || '',
+            user_id: user.uid || '',
             getIdToken: user.getIdToken
           }
         });

@@ -25,7 +25,7 @@ const Login = () => {
 
   if (signinStatus === signinState.signedin && user) {
     return (
-      <Navigate to={'/app/dashboard'} />
+      <Navigate to={'/app/dashboard'} replace={true} />
     );
   }
 

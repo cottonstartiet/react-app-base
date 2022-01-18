@@ -5,7 +5,7 @@ import { IProfilePatchRequest } from "../types";
 import { IResponseLocals } from "../types/auth";
 import { userProfileService } from "../services";
 
-export const profilesController = {
+const profilesController = {
     async getUserProfile(_: Request, res: Response) {
         const { user } = res.locals as IResponseLocals;
         logger.info({
@@ -38,3 +38,5 @@ export const profilesController = {
         return res.status(StatusCodes.CREATED).json(updatedProfile);
     }
 }
+
+export default profilesController;

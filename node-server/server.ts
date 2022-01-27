@@ -5,10 +5,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import { IMongodbConfig } from "./types";
 import mongoose from 'mongoose';
-import { correlator } from "./middleware/correlator";
-import profiles from './routes/profiles';
-import health from './routes/healthCheck';
-import firebaseMiddleware from "./middleware/firebaseAuthMiddleware";
+import configureRoutes from "./routes";
 
 interface IServerOptions {
     corsOptions: CorsOptions;
@@ -36,17 +33,7 @@ const server = {
             throw error;
         }
 
-        // Configure routes
-        app.use('/api/*', correlator());
-
-        // Without Auth
-        // Health check
-        app.get('/api/health', health);
-
-        // With auth
-        app.use('/api/*', firebaseMiddleware.checkIfAuthenticated);
-        // Porfile
-        app.use('/api/profile', profiles);
+        configureRoutes(app);
     },
     start(app: Express, port: number) {
         app.listen(port, () => logger.info({

@@ -34,8 +34,17 @@ const profilesController = {
         logger.info({
             message: `Updating profile for user id ${user.uid}`
         });
-        const updatedProfile = await userProfileService.createOrUpdateProfile(user.uid, req.body as IProfilePatchRequest);
-        return res.status(StatusCodes.CREATED).json(updatedProfile);
+
+        try {
+            const updatedProfile = await userProfileService.createOrUpdateProfile(user.uid, req.body as IProfilePatchRequest);
+            return res.status(StatusCodes.CREATED).json(updatedProfile);
+        } catch (error) {
+            logger.error({
+                message: 'Error occured while updating profile',
+                data: error
+            })
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR);
+        }
     }
 }
 

@@ -10,7 +10,7 @@ export default function configureRoutes(app: Express) {
 
     // Without Auth
     // Health check
-    app.get('/api/health', health);
+    app.use('/api/health', health);
 
     // With auth
     app.use('/api/*', firebaseMiddleware.checkIfAuthenticated);

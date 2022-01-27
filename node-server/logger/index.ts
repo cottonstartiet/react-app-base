@@ -5,18 +5,18 @@ import winstonlogger from "./winstonLogger";
 const logger = {
     info(log: ILogData) {
         const context = executionContext.get();
-        const payload = { ...log, ...context };
         winstonlogger.info({
             level: 'info',
-            ...payload
+            ...log,
+            ...context
         });
     },
     error(log: ILogData) {
         const context = executionContext.get();
-        const payload = { ...log, ...context };
         winstonlogger.error({
             level: 'error',
-            ...payload
+            ...log,
+            ...context
         })
     }
 }

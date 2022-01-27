@@ -5,10 +5,10 @@ import cors from 'cors';
 import helmet from 'helmet';
 import { IMongodbConfig } from "./types";
 import mongoose from 'mongoose';
-import { firebaseMiddleware } from "./middleware";
 import { correlator } from "./middleware/correlator";
 import profiles from './routes/profiles';
 import health from './routes/healthCheck';
+import firebaseMiddleware from "./middleware/firebaseAuthMiddleware";
 
 interface IServerOptions {
     corsOptions: CorsOptions;
@@ -27,11 +27,7 @@ const server = {
 
         // Conect to MongoDB Server
         try {
-            await mongoose.connect(mongodbConfig.connectionString, {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-                useCreateIndex: true,
-            });
+            await mongoose.connect(mongodbConfig.connectionString);
         } catch (error) {
             logger.error({
                 message: 'Error while connecting to MongoDB',

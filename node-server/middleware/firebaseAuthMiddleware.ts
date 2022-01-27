@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import logger from "../logger";
 import firebaseAdmin from "../services/firebaseAdminService";
 
-export const firebaseMiddleware = {
+const firebaseMiddleware = {
     async checkIfAuthenticated(req: Request, res: Response, next: NextFunction) {
         try {
             const authToken = req.headers['authorization'] && req.headers['authorization'].split(' ')[0] === 'Bearer' ?
@@ -34,3 +34,5 @@ export const firebaseMiddleware = {
         }
     }
 };
+
+export default firebaseMiddleware;

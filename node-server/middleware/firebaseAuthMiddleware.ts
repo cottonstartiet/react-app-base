@@ -11,13 +11,12 @@ const firebaseMiddleware = {
                 null;
 
             if (!authToken) {
-                return res.sendStatus(StatusCodes.UNAUTHORIZED);
+                return next({
 
+                });
             }
 
-            const userInfo = await firebaseAdmin
-                .auth()
-                .verifyIdToken(authToken);
+            const userInfo = await firebaseAdmin.auth().verifyIdToken(authToken);
             res.locals.user = userInfo;
             return next();
 

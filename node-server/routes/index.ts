@@ -15,6 +15,5 @@ export default function configureRoutes(app: Express) {
     // With auth
     app.use('/api/*', firebaseMiddleware.checkIfAuthenticated);
     // Porfile
-    app.use('/api/profile', profiles);
-
+    app.use('/api/profiles', profiles);
 }

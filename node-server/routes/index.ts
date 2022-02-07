@@ -1,6 +1,5 @@
 import { Express } from 'express'
-import { correlator } from "../middleware/correlator";
-import firebaseMiddleware from '../middleware/firebaseAuthMiddleware';
+import { correlator, checkIfAuthenticated } from "../middleware";
 import health from './healthCheck';
 import profiles from './profiles';
 
@@ -13,7 +12,7 @@ export default function configureRoutes(app: Express) {
     app.use('/api/health', health);
 
     // With auth
-    app.use('/api/*', firebaseMiddleware.checkIfAuthenticated);
+    app.use('/api/*', checkIfAuthenticated);
     // Porfile
     app.use('/api/profiles', profiles);
 }

@@ -1,9 +1,10 @@
 import express from 'express';
-import profilesController from '../controllers/profilesController';
+import { getUserProfile, updateUserProfile } from './../controllers';
 
 const router = express.Router();
+
 // /api/profiles/*
-router.get('/', profilesController.getUserProfile);
-router.patch('/', profilesController.updateUserProfile);
+router.get('/', getUserProfile);
+router.patch('/', updateUserProfile);
 
 export default router;

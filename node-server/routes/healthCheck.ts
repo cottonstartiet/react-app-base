@@ -1,8 +1,10 @@
 import express from 'express';
-import healthCheckController from '../controllers/healthCheckController';
+import { getApiHealth } from './../controllers';
+
 
 const router = express.Router();
+
 // /api/health/*
-router.get('/', healthCheckController.getApiHealth);
+router.get('/', getApiHealth);
 
 export default router;

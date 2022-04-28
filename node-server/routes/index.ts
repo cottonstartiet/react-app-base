@@ -1,7 +1,7 @@
 import { Express } from 'express'
 import { correlator, checkIfAuthenticated } from "../middleware";
-import health from './healthCheck';
-import profiles from './profiles';
+import healthCheckRouter from './healthCheck';
+import profilesRouter from './profiles';
 
 export default function configureRoutes(app: Express) {
     // Configure routes
@@ -9,10 +9,10 @@ export default function configureRoutes(app: Express) {
 
     // Without Auth
     // Health check
-    app.use('/api/health', health);
+    app.use('/api/health', healthCheckRouter);
 
     // With auth
     app.use('/api/*', checkIfAuthenticated);
     // Porfile
-    app.use('/api/profiles', profiles);
+    app.use('/api/profiles', profilesRouter);
 }

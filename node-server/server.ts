@@ -25,7 +25,7 @@ export async function connectToDb(mongoConfig: IMongodbConfig) {
     }
 }
 
-export async function startServer(app: Express, port: number, corsOptions: CorsOptions) {
+export async function start(app: Express, port: number, corsOptions: CorsOptions) {
     try {
         // Setup Cors
         app.use(cors(corsOptions));

@@ -18,7 +18,7 @@ const corsOptions: CorsOptions = {
 async function main() {
     try {
         await server.connectToDb(mongodbConfig);
-        await server.startServer(app, serverConfig.port, corsOptions)
+        await server.start(app, serverConfig.port, corsOptions)
     } catch (error) {
         logger.error({
             message: 'Startup  error',
